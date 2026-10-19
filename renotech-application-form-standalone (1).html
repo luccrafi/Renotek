@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Renotech ApS – Application Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+<style>
+:root{--bg:#f1f0ff;--card:#fff;--tx:#1e1b3a;--mu:#6b6890;--bd:#e0ddf7;--a:#6c4cf5;--b:#00b8d9;--c:#ff5ca8;--ok:#12b886;--inp:#faf9ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12102b;--card:#1d1a3f;--tx:#f1efff;--mu:#a9a5d6;--bd:#34305f;--inp:#262250}}
+:root[data-theme="dark"]{--bg:#12102b;--card:#1d1a3f;--tx:#f1efff;--mu:#a9a5d6;--bd:#34305f;--inp:#262250}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font-family:Poppins,system-ui,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden}
+.blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.35;z-index:0;animation:fl 14s ease-in-out infinite alternate}
+.b1{width:340px;height:340px;background:var(--a);top:-80px;left:-80px}.b2{width:300px;height:300px;background:var(--c);bottom:-60px;right:-60px;animation-delay:-5s}.b3{width:240px;height:240px;background:var(--b);top:45%;left:60%;animation-delay:-9s}
+@keyframes fl{to{transform:translate(60px,40px) scale(1.2)}}
+.wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:20px 14px 60px}
+header{background:linear-gradient(120deg,var(--a),var(--c) 60%,var(--b));color:#fff;border-radius:24px;padding:28px 26px;box-shadow:0 14px 40px rgba(108,76,245,.35);animation:pop .7s both}
+header h1{margin:0;font-size:clamp(1.4rem,4vw,2rem)}header p{margin:6px 0 0;opacity:.92;font-size:.93rem}
+.logo{display:inline-block;background:rgba(255,255,255,.2);padding:4px 14px;border-radius:99px;font-weight:600;font-size:.8rem;margin-bottom:10px;letter-spacing:.5px}
+@keyframes pop{from{opacity:0;transform:translateY(-20px) scale(.97)}}
+.prog{height:8px;background:var(--bd);border-radius:9px;margin:22px 0 12px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--c),var(--b));border-radius:9px;transition:width .6s cubic-bezier(.2,.9,.3,1)}
+.steps{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none}
+.steps button{flex:1 0 auto;border:2px solid var(--bd);background:var(--card);color:var(--mu);padding:8px 14px;border-radius:99px;font:500 .8rem Poppins;cursor:pointer;transition:.3s;white-space:nowrap}
+.steps button.on{background:var(--a);color:#fff;border-color:var(--a);transform:translateY(-2px);box-shadow:0 8px 18px rgba(108,76,245,.4)}
+.steps button.done{border-color:var(--ok);color:var(--ok)}
+.card{background:var(--card);border-radius:24px;padding:26px;box-shadow:0 10px 34px rgba(60,40,140,.12);display:none}
+.card.show{display:block;animation:sl .5s cubic-bezier(.2,.9,.3,1) both}
+.card.back{animation-name:slb}
+@keyframes sl{from{opacity:0;transform:translateX(50px)}}@keyframes slb{from{opacity:0;transform:translateX(-50px)}}
+h2{margin:0 0 4px;font-size:1.3rem;background:linear-gradient(90deg,var(--a),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mu);font-size:.85rem;margin:0 0 20px;line-height:1.5}
+.g{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.g .full{grid-column:1/-1}
+label{display:block;font-size:.78rem;font-weight:600;color:var(--mu);margin-bottom:6px}
+input,textarea{width:100%;padding:12px 14px;border:2px solid var(--bd);border-radius:14px;background:var(--inp);color:var(--tx);font:400 .95rem Poppins;transition:.25s}
+input:focus,textarea:focus{outline:none;border-color:var(--a);box-shadow:0 0 0 4px rgba(108,76,245,.18);transform:translateY(-1px)}
+input.err{border-color:var(--c);animation:sh .4s}
+@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.row{background:var(--inp);border:2px dashed var(--bd);border-radius:18px;padding:16px;margin-bottom:14px;position:relative;animation:sl .4s both}
+.row .g{grid-template-columns:repeat(4,1fr);gap:12px}.row .g .w2{grid-column:span 2}
+.rm{position:absolute;top:-10px;right:-6px;width:28px;height:28px;border-radius:50%;border:none;background:var(--c);color:#fff;cursor:pointer;font-size:16px;line-height:1}
+.btn{border:none;border-radius:99px;padding:12px 24px;font:600 .92rem Poppins;cursor:pointer;transition:.25s;color:#fff;background:linear-gradient(120deg,var(--a),var(--b))}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(108,76,245,.4)}.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--a);border:2px solid var(--a)}.btn.pink{background:linear-gradient(120deg,var(--c),#ff9a5c)}.btn.green{background:linear-gradient(120deg,var(--ok),var(--b))}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:26px;flex-wrap:wrap}
+.pills{display:flex;gap:10px;flex-wrap:wrap}.pills label{margin:0;cursor:pointer}
+.pills input{display:none}.pills span{display:inline-block;padding:10px 24px;border-radius:99px;border:2px solid var(--bd);font-weight:600;font-size:.9rem;color:var(--tx);transition:.25s}
+.pills input:checked+span{background:var(--a);border-color:var(--a);color:#fff;transform:scale(1.06)}
+.q{font-weight:600;font-size:.95rem;margin:18px 0 10px}
+.legal{font-size:.78rem;line-height:1.6;color:var(--mu);background:var(--inp);border-left:4px solid var(--b);padding:14px;border-radius:12px;max-height:150px;overflow:auto;margin:18px 0}
+.sig{border:2px dashed var(--bd);border-radius:14px;background:var(--inp);touch-action:none;width:100%;height:120px;display:block;cursor:crosshair}
+.hide{display:none}.rev dl{display:grid;grid-template-columns:140px 1fr;gap:6px 14px;margin:0 0 14px;font-size:.88rem}.rev dt{color:var(--mu)}.rev dd{margin:0;word-break:break-word}
+.rev h3{margin:16px 0 8px;color:var(--a);font-size:1rem}
+.exp{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.exp .btn{flex:1 1 180px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,120px);background:var(--tx);color:var(--bg);padding:12px 22px;border-radius:99px;font-size:.88rem;transition:.4s;z-index:9;max-width:90vw;text-align:center}
+#toast.on{transform:translate(-50%,0)}
+@media(max-width:640px){.g,.row .g{grid-template-columns:1fr}.row .g .w2{grid-column:auto}.card{padding:20px 16px}.rev dl{grid-template-columns:1fr}}
+@media print{.blob,header,.prog,.steps,.nav,.exp,#dl,#toast{display:none!important}.card{display:none!important;box-shadow:none}.card.rev{display:block!important}body{background:#fff;color:#000}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="wrap">
+<header><span class="logo">RENOTECH APS</span><h1>Application Form</h1><p>Fill in each step at your own pace, then export your completed form as a PDF or Word document.</p></header>
+<div class="prog"><i id="bar"></i></div>
+<div class="steps" id="steps"></div>
+
+<form id="f" onsubmit="return false" autocomplete="off">
+<section class="card" data-t="Personal">
+<h2>Personal Information</h2><p class="sub">Tell us a little about yourself.</p>
+<div class="g">
+<div><label>Forename(s) *</label><input id="fn"></div><div><label>Surname *</label><input id="sn"></div>
+<div><label>Previous Names</label><input id="prev"></div><div><label>Date of Birth</label><input id="dob" type="date"></div>
+<div class="full"><label>Address</label><textarea id="addr" rows="2"></textarea></div>
+<div><label>Telephone</label><input id="tel" type="tel"></div><div><label>Social Security Number</label><input id="ssn"></div>
+</div></section>
+
+<section class="card" data-t="Education">
+<h2>Education</h2><p class="sub">Add every school or college you attended.</p>
+<div id="edu"></div><button type="button" class="btn ghost" onclick="addEdu()">+ Add education</button></section>
+
+<section class="card" data-t="Employment">
+<h2>Employment</h2>
+<p class="sub">Please supply your work history for the previous 5 years, starting with your <b>most recent</b> employer. Where you were unemployed, give the unemployment office you reported to and the dates. Dates must be in full and correct; any break in employment above 28 days must be detailed (travelling, education etc.) with dates.</p>
+<div id="emp"></div><button type="button" class="btn ghost" onclick="addEmp()">+ Add employer</button></section>
+
+<section class="card" data-t="Referee">
+<h2>Personal Referee</h2><p class="sub">One person who is not related to you and has known you for 5 years.</p>
+<div class="g">
+<div><label>Forename(s)</label><input id="rfn"></div><div><label>Surname</label><input id="rsn"></div>
+<div><label>Email</label><input id="rem" type="email"></div><div><label>Occupation</label><input id="roc"></div>
+<div><label>Telephone</label><input id="rtel" type="tel"></div><div><label>How long have they known you?</label><input id="rlen"></div>
+</div></section>
+
+<section class="card" data-t="Declaration">
+<h2>Declaration</h2><p class="sub">Almost done – please answer and sign below.</p>
+<div class="q">Do you have any criminal convictions?</div>
+<div class="pills"><label><input type="radio" name="conv" value="Yes"><span>Yes</span></label><label><input type="radio" name="conv" value="No"><span>No</span></label></div>
+<div id="convd" class="hide" style="margin-top:14px"><label>Please supply details of your conviction</label><textarea id="convt" rows="3"></textarea></div>
+<div class="q">Do we have your authority to carry out a Criminal Record Check, or to consult and share your information with Politiets Efterretningstjeneste?</div>
+<div class="pills"><label><input type="radio" name="auth" value="Yes"><span>Yes</span></label><label><input type="radio" name="auth" value="No"><span>No</span></label></div>
+<div class="legal" id="legal">I declare that the information given in this application form is complete and accurate. I accept that any misrepresentation of the facts is a ground for refusal of employment or disciplinary proceedings (and, in appropriate cases, criminal charges). I understand that my employment is subject to satisfactory reference checks being obtained, I therefore authorise approaches to be made to former employers, educational establishments, government agencies and personal referees for verification of the information I have supplied within this form; and I accept that if the activities for which I am to be deployed require an Extended Background Check, that deployment on any such activities is conditional on the satisfactory result of such a check. I confirm that I shall inform the company of any disqualifying convictions I may receive following my background check. I agree to have my details shared with the companies and institutions I have provided details for. This includes full name, date of birth and Social Security Number.</div>
+<div class="g"><div><label>Print Name *</label><input id="pn"></div><div><label>Date</label><input id="dt" type="date"></div>
+<div class="full"><label>Signature (draw with finger or mouse) <a href="#" id="clr" style="float:right;color:var(--c)">Clear</a></label><canvas class="sig" id="sig"></canvas></div></div>
+</section>
+
+<section class="card rev" data-t="Review">
+<h2>Review &amp; Export</h2><p class="sub">Check everything, then download your completed form.</p>
+<div id="rev"></div>
+<div class="exp"><button type="button" class="btn pink" id="xpdf">⬇ Download PDF</button><button type="button" class="btn green" id="xdoc">⬇ Download Word (.docx)</button><button type="button" class="btn ghost" onclick="window.print()">🖨 Print / Save as PDF</button></div><p id="dl" class="sub" style="margin-top:14px"></p>
+</section>
+</form>
+
+<div class="nav"><button type="button" class="btn ghost" id="prv">← Back</button><button type="button" class="btn" id="nxt">Next →</button></div>
+</div>
+<div id="toast"></div>
+
+<script>
+const $=id=>document.getElementById(id),cards=[...document.querySelectorAll('.card')];
+let cur=0;const done=new Set();
+const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),5000)};
+$('steps').innerHTML=cards.map((c,i)=>`<button type="button" data-i="${i}">${i+1}. ${c.dataset.t}</button>`).join('');
+const sb=[...$('steps').children];
+function go(i,back){
+  cards[cur].classList.remove('show');cur=i;
+  const c=cards[cur];c.classList.toggle('back',!!back);c.classList.add('show');
+  sb.forEach((b,k)=>{b.classList.toggle('on',k===cur);b.classList.toggle('done',done.has(k)&&k!==cur)});
+  $('bar').style.width=((cur+1)/cards.length*100)+'%';
+  $('prv').style.visibility=cur?'visible':'hidden';$('nxt').style.display=cur===cards.length-1?'none':'';
+  if(cur===cards.length-1)review();
+  sb[cur].scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});window.scrollTo({top:0,behavior:'smooth'});
+  if(cur===4)sizeSig();
+}
+function valid(){
+  const need=cur===0?['fn','sn']:cur===4?['pn']:[];let ok=true;
+  need.forEach(id=>{const e=$(id);e.classList.remove('err');if(!e.value.trim()){ok=false;void e.offsetWidth;e.classList.add('err')}});
+  if(!ok)toast('Please fill in the highlighted required fields');return ok}
+$('nxt').onclick=()=>{if(valid()){done.add(cur);go(cur+1)}};
+$('prv').onclick=()=>go(cur-1,true);
+sb.forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(i>cur&&!valid())return;done.add(cur);go(i,i<cur)});
+
+const inp=(c,l,t='text',x='')=>`<div class="${x}"><label>${l}</label><input data-c="${c}" type="${t}"></div>`;
+function addRow(box,html){const d=document.createElement('div');d.className='row';d.innerHTML=html+'<button type="button" class="rm" title="Remove">×</button>';
+  d.querySelector('.rm').onclick=()=>{d.style.transition='.3s';d.style.opacity=0;d.style.transform='scale(.9)';setTimeout(()=>d.remove(),280)};$(box).appendChild(d)}
+const addEdu=()=>addRow('edu','<div class="g">'+inp(0,'School / college name &amp; address','text','w2')+inp(1,'Attended from','date')+inp(2,'Attended to','date')+inp(3,'Exams taken','text','w2')+'</div>');
+const addEmp=()=>addRow('emp','<div class="g">'+inp(0,'Employed from','date')+inp(1,'Employed to','date')+inp(2,'Employer name, address &amp; telephone','text','w2')+inp(3,'Job title','text','w2')+'</div>');
+addEdu();addEmp();
+document.querySelectorAll('[name=conv]').forEach(r=>r.onchange=()=>$('convd').classList.toggle('hide',r.value!=='Yes'));
+$('dt').valueAsDate=new Date();
+
+// signature
+const cv=$('sig'),cx=cv.getContext('2d');let dr=false,has=false;
+function sizeSig(){const r=cv.getBoundingClientRect();if(!r.width||cv.width===Math.round(r.width*2))return;const img=has?cv.toDataURL():null;cv.width=r.width*2;cv.height=r.height*2;cx.scale(2,2);cx.lineWidth=2.2;cx.lineCap='round';cx.strokeStyle='#4b2fd0';if(img){const i=new Image();i.onload=()=>cx.drawImage(i,0,0,r.width,r.height);i.src=img}}
+const pt=e=>{const r=cv.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]};
+cv.onpointerdown=e=>{dr=true;has=true;cv.setPointerCapture(e.pointerId);cx.beginPath();cx.moveTo(...pt(e))};
+cv.onpointermove=e=>{if(dr){cx.lineTo(...pt(e));cx.stroke()}};
+cv.onpointerup=()=>dr=false;
+$('clr').onclick=e=>{e.preventDefault();cx.clearRect(0,0,cv.width,cv.height);has=false};
+addEventListener('resize',sizeSig);
+
+// data
+const v=id=>$(id).value.trim(),rad=n=>(document.querySelector(`[name=${n}]:checked`)||{}).value||'';
+const rows=b=>[...$(b).children].map(r=>[...r.querySelectorAll('input')].map(i=>i.value.trim())).filter(r=>r.some(x=>x));
+const fd=s=>{if(!s)return'';const[y,m,d]=s.split('-');return d?`${d}/${m}/${y}`:s};
+function data(){return{
+  per:[['Forename(s)',v('fn')],['Surname',v('sn')],['Previous Names',v('prev')],['Date of Birth',fd(v('dob'))],['Address',v('addr')],['Telephone',v('tel')],['Social Security Number',v('ssn')]],
+  edu:rows('edu').map(r=>[r[0],fd(r[1]),fd(r[2]),r[3]]),emp:rows('emp').map(r=>[fd(r[0]),fd(r[1]),r[2],r[3]]),
+  ref:[['Forename(s)',v('rfn')],['Surname',v('rsn')],['Email',v('rem')],['Occupation',v('roc')],['Telephone',v('rtel')],['Known you for',v('rlen')]],
+  dec:[['Any criminal convictions?',rad('conv')||'—'],...(rad('conv')==='Yes'?[['Conviction details',v('convt')]]:[]),['Authority for Criminal Record Check / PET',rad('auth')||'—'],['Print name',v('pn')],['Date',fd(v('dt'))]],
+  sig:has?cv.toDataURL('image/png'):null}}
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function review(){const d=data();const dl=a=>'<dl>'+a.map(([k,x])=>`<dt>${k}</dt><dd>${esc(x)||'—'}</dd>`).join('')+'</dl>';
+  const tb=(h,a)=>a.length?a.map(r=>`<dl><dt>${h[0]}</dt><dd>${esc(r[0])}</dd><dt>${h[1]}</dt><dd>${esc(r[1])}</dd><dt>${h[2]}</dt><dd>${esc(r[2])}</dd><dt>${h[3]}</dt><dd>${esc(r[3])}</dd></dl>`).join(''):'<dl><dt>—</dt><dd>None added</dd></dl>';
+  $('rev').innerHTML='<h3>Personal Information</h3>'+dl(d.per)+'<h3>Education</h3>'+tb(['School','From','To','Exams'],d.edu)+'<h3>Employment</h3>'+tb(['From','To','Employer','Job title'],d.emp)+'<h3>Personal Referee</h3>'+dl(d.ref)+'<h3>Declaration</h3>'+dl(d.dec)+(d.sig?'<img alt="Signature" style="max-width:240px;border-bottom:2px solid var(--bd)" src="'+d.sig+'">':'')}
+
+const fname=ext=>`Renotech-Application-${(v('fn')+'-'+v('sn')).replace(/\W+/g,'-')||'Form'}.${ext}`;
+async function save(name,blob){try{const u=URL.createObjectURL(blob),l=document.createElement('a');l.href=u;l.download=name;document.body.appendChild(l);l.click();l.remove();
+  $('dl').innerHTML='\u2713 File ready. If nothing downloaded, <a href="'+u+'" download="'+name+'" target="_blank" style="color:var(--a);font-weight:600">tap here to save '+name+'</a>';toast('\u2713 '+name+' is ready')}catch(e){toast('Download failed: '+e.message)}}
+function pre(){if(!v('fn')||!v('sn')||!v('pn')){toast('Please complete first name, surname and print name first');return false}return true}
+
+$('xpdf').onclick=async()=>{if(!pre())return;if(!window.jspdf){toast('PDF library failed to load – check your connection and reload');return}try{const d=data(),{jsPDF}=window.jspdf,p=new jsPDF({unit:'pt',format:'a4'});
+  p.setFontSize(20);p.setTextColor(108,76,245);p.text('Renotech ApS',40,50);p.setFontSize(10);p.setTextColor(110);p.text('Application Form',40,66);
+  let y=82;const sec=(t,head,body,two)=>{p.autoTable({startY:y,head:[[{content:t,colSpan:head.length,styles:{fillColor:[108,76,245],halign:'left'}}],...(two?[]:[head])],body:body.length?body:[head.map((_,i)=>i?'':'—')],theme:'grid',styles:{fontSize:9,cellPadding:5},headStyles:{fillColor:[255,92,168]},columnStyles:two?{0:{fontStyle:'bold',cellWidth:170,fillColor:[241,240,255]}}:{},margin:{left:40,right:40}});y=p.lastAutoTable.finalY+14};
+  sec('PERSONAL INFORMATION',['a','b'],d.per,1);sec('EDUCATION',['School / college','From','To','Exams taken'],d.edu);sec('EMPLOYMENT',['From','To','Employer','Job title'],d.emp);sec('PERSONAL REFEREE',['a','b'],d.ref,1);sec('DECLARATION',['a','b'],d.dec,1);
+  if(y>700){p.addPage();y=50}if(d.sig)p.addImage(d.sig,'PNG',40,y,160,60);p.setFontSize(8);p.setTextColor(110);p.text('Signed electronically – '+v('pn')+', '+fd(v('dt')),40,y+75);
+  await save(fname('pdf'),p.output('blob'))}catch(e){toast('PDF error: '+e.message)}};
+
+$('xdoc').onclick=async()=>{if(!pre())return;if(!window.docx){toast('Word library failed to load – check your connection and reload');return}try{const d=data(),X=window.docx;
+  const P=(t,o={})=>new X.Paragraph({children:[new X.TextRun({text:String(t||''),bold:o.b,color:o.c,size:o.s||20})]});
+  const C=(t,o={})=>new X.TableCell({children:[P(t,o)],shading:o.f?{type:X.ShadingType.CLEAR,fill:o.f,color:'auto'}:undefined,columnSpan:o.sp,margins:{top:60,bottom:60,left:100,right:100}});
+  const T=(title,head,body,two)=>[new X.Paragraph({spacing:{before:240,after:80},children:[new X.TextRun({text:title,bold:true,color:'6C4CF5',size:24})]}),
+    new X.Table({width:{size:100,type:X.WidthType.PERCENTAGE},rows:[...(two?[]:[new X.TableRow({children:head.map(h=>C(h,{b:true,c:'FFFFFF',f:'FF5CA8'}))})]),...(body.length?body:[head.map(()=> '')]).map(r=>new X.TableRow({children:r.map((c,i)=>C(c,two&&!i?{b:true,f:'F1F0FF'}:{}))}))]})];
+  const kids=[new X.Paragraph({children:[new X.TextRun({text:'Renotech ApS',bold:true,size:40,color:'6C4CF5'})]}),new X.Paragraph({children:[new X.TextRun({text:'Application Form',color:'777777'})]}),
+    ...T('PERSONAL INFORMATION',[],d.per,1),...T('EDUCATION',['School / college','From','To','Exams taken'],d.edu),...T('EMPLOYMENT',['From','To','Employer','Job title'],d.emp),...T('PERSONAL REFEREE',[],d.ref,1),...T('DECLARATION',[],d.dec,1),new X.Paragraph({text:''})];
+  if(d.sig){const u=Uint8Array.from(atob(d.sig.split(',')[1]),c=>c.charCodeAt(0));kids.push(new X.Paragraph({children:[new X.ImageRun({data:u,type:'png',transformation:{width:180,height:68}})]}))}
+  kids.push(P('Signed electronically – '+v('pn')+', '+fd(v('dt')),{c:'777777',s:16}));
+  const doc=new X.Document({sections:[{children:kids}]});await save(fname('docx'),await X.Packer.toBlob(doc))}catch(e){toast('Word error: '+e.message)}};
+
+go(0);
+</script>
+</body>
+</html>
